@@ -10,15 +10,55 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="218dp"
+        android:orientation="vertical"
         android:background="#ffffff">
-        <ImageView
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            app:layout_scrollFlags="scroll"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:src="@mipmap/img_1"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            android:minHeight="50dp"
-            android:scaleType="centerCrop"/>
+            android:layout_weight="1"
+            android:layout_height="0dp"/>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/toolbar_tab"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:layout_gravity="bottom"
+            android:background="#ffffff"
+            android:fillViewport="false"
+            app:tabIndicatorColor="#0835f8"
+            app:tabIndicatorHeight="2.0dp"
+            app:tabSelectedTextColor="#0835f8"
+            app:tabTextColor="#ced0d3">
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:icon="@drawable/tab_selector"/>
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="分享"/>
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="收藏"/>
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="关注"/>
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="关注者"/>
+
+        </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
 
 
