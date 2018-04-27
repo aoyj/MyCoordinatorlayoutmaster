@@ -1,5 +1,6 @@
 package com.aoy.learn.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.aoy.learn.MyBehaviorActivity;
 import com.aoy.learn.R;
 
 import java.util.ArrayList;
@@ -55,6 +57,17 @@ public class ItemAdapter extends RecyclerView.Adapter {
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                 //   toMyBehavior(v);
+                }
+            });
+        }
+        public void toMyBehavior(View view) {
+            Intent intent = new Intent(view.getContext(), MyBehaviorActivity.class);
+            view.getContext().startActivity(intent);
         }
     }
+
 }

@@ -1,12 +1,22 @@
 package com.aoy.learn.adapter;
 
+import android.graphics.PointF;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.aoy.learn.R;
+import com.aoy.learn.uitls.Tools;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.AbstractDraweeController;
+import com.facebook.drawee.drawable.ScalingUtils;
+import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import java.util.List;
 
@@ -18,9 +28,9 @@ import butterknife.ButterKnife;
  */
 
 public class ViewPagerItemAdapter extends PagerAdapter {
-    List<Integer> mList;
+    List<Uri> mList;
 
-    public ViewPagerItemAdapter(List<Integer> mList) {
+    public ViewPagerItemAdapter(List<Uri> mList) {
         this.mList = mList;
     }
 
@@ -29,8 +39,24 @@ public class ViewPagerItemAdapter extends PagerAdapter {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.layout_viewpager_item, null, false);
         container.addView(view);
         ViewHolder viewHolder = new ViewHolder(view);
-        viewHolder.img.setImageResource(mList.get(position));
+        setImageUrl(mList.get(position),  viewHolder.img);
         return view;
+    }
+
+    void setImageUrl(Uri uri, SimpleDraweeView img){
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setAutoRotateEnabled(true)
+                .build();
+        AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setOldController(img.getController())
+                .setImageRequest(request)
+                .build();
+        GenericDraweeHierarchyBuilder builder = new GenericDraweeHierarchyBuilder(
+                img.getResources());
+        builder.setActualImageScaleType(ScalingUtils.ScaleType.FOCUS_CROP);
+        builder.setActualImageFocusPoint(new PointF(0.5f,0f));
+        img.setHierarchy(builder.build());
+        img.setController(controller);
     }
 
     @Override
@@ -50,7 +76,7 @@ public class ViewPagerItemAdapter extends PagerAdapter {
 
     static class ViewHolder {
         @BindView(R.id.img)
-        ImageView img;
+        SimpleDraweeView img;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

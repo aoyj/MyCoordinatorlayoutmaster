@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyCoordinatorlayout-master</string>
+    <string name="app_banner_header_behavior">com.aoy.learn.behavior.ScaleRefreshAppBarBehavior</string>
+    <string name="app_banner_scrolling_behavior">com.aoy.learn.behavior.MyScrollingViewBehavior</string>
 </resources>
