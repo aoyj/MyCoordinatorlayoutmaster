@@ -13,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.aoy.learn.adapter.ViewPagerItemAdapter;
 import com.aoy.learn.fragment.MyBebaviorFragment;
 import com.aoy.learn.widget.BannerLinearLayout;
-import com.facebook.drawee.backends.pipeline.Fresco;
+import com.aoy.learn.widget.ClassicRefreshHeaderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,33 +22,35 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by drizzt on 2018/4/23.
+ * Created by drizzt on 2018/4/27.
  */
 
-public class MyBehaviorActivity extends AppCompatActivity {
+public class ClassicRefreshActivity extends AppCompatActivity {
 
+
+    @BindView(R.id.bottom_viewpager)
+    ViewPager bottomViewpager;
+    @BindView(R.id.refresh_header_layout)
+    ClassicRefreshHeaderView refreshHeaderLayout;
     @BindView(R.id.top_view)
     BannerLinearLayout topView;
 
     List<Uri> mList = new ArrayList<>();
     ViewPagerItemAdapter mAdapter;
-    ViewPager viewPager;
+    ViewPager bannerViewPager;
 
     List<Fragment> mBotttomList = new ArrayList<>();
-    @BindView(R.id.bottom_viewpager)
-    ViewPager bottomViewpager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_bihavior_2);
+        setContentView(R.layout.activity_classic_refresh);
         ButterKnife.bind(this);
         init();
-        Fresco.initialize(this);
     }
 
     private void init() {
-        viewPager = topView.getViewPager();
+        bannerViewPager = topView.getViewPager();
         mList.add(new Uri.Builder()
                 .scheme("res")
                 .path(String.valueOf(R.mipmap.img_0))
@@ -77,9 +79,9 @@ public class MyBehaviorActivity extends AppCompatActivity {
         mBotttomList.add(MyBebaviorFragment.newInstance());
         bottomViewpager.setAdapter(new viewPagerAdapter(getSupportFragmentManager()));
         mAdapter = new ViewPagerItemAdapter(mList);
-        viewPager.setAdapter(mAdapter);
+        bannerViewPager.setAdapter(mAdapter);
         topView.getPagerIndicator().setBoxAcount(mList.size());
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        bannerViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -95,7 +97,6 @@ public class MyBehaviorActivity extends AppCompatActivity {
 
             }
         });
-       // topView.getToolbarTab().setupWithViewPager(bottomViewpager);
         bottomViewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener
                 (topView.getToolbarTab()));
         topView.getToolbarTab().setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener
@@ -119,3 +120,4 @@ public class MyBehaviorActivity extends AppCompatActivity {
         }
     }
 }
+

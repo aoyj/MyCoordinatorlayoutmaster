@@ -182,6 +182,7 @@ public class ScaleRefreshAppBarBehavior extends MyHeaderBehavior<BannerLinearLay
      * 判断响应的NestedScrollingViewChild是否可以向下滑动
      * @param view
      * @return
+     * todo viewpager 里的nestedScrollView是否要去掉 不能下滑这个判断条件
      */
     @Override
     public boolean canDragView(BannerLinearLayout view) {

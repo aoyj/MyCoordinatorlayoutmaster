@@ -58,13 +58,13 @@ public class MyHeaderBehavior<V extends View> extends MyViewOffsetBahavior<V> {
         switch (ev.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
                 //解决抖动问题
+                isHeaderFiling = false;
                 if (mFlingRunnable != null) {
                     child.removeCallbacks(mFlingRunnable);
                     mFlingRunnable = null;
                 }
                 moveDy = INVALID_MOVE;
                 consumeDy = INVALID_MOVE;
-                isHeaderFiling = false;
                 mIsBeingDragged = false;
                 mActivePointerId = INVALID_POINTER;
                 final int x = (int) ev.getX();

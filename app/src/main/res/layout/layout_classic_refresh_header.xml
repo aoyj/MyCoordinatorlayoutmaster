@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="54dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+
+        <com.aoy.learn.widget.CircleProgressBar
+            android:id="@+id/dh_circle_bar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:style="solid_line"
+            app:progress_stroke_width="2dp"
+            app:line_width="4dp"
+            app:line_count="30"
+            app:progress_stroke_cap="round"
+            app:progress_shader="sweep"
+            app:draw_progress_text="false"
+            android:layout_centerInParent="true"
+            app:progress_background_color="@color/pull_refresh_circle_darker_gray"
+            app:progress_start_color="@color/pull_refresh_circle_purple"
+            app:progress_end_color="@color/pull_refresh_circle_purple"
+            app:progress_text_color="@color/pull_refresh_circle_purple"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/dh_animation_img"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+</LinearLayout>

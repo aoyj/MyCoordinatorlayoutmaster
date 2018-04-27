@@ -2,4 +2,7 @@
     <string name="app_name">MyCoordinatorlayout-master</string>
     <string name="app_banner_header_behavior">com.aoy.learn.behavior.ScaleRefreshAppBarBehavior</string>
     <string name="app_banner_scrolling_behavior">com.aoy.learn.behavior.MyScrollingViewBehavior</string>
+    <string name="classic_refresh_bottom_behavior">com.aoy.learn.behavior.ClassicRefreshBottomBehavior</string>
+    <string name="classic_refresh_header_behavior">com.aoy.learn.behavior.MiddleClassicRefreshHeaderViewBehavior</string>
+    <string name="classic_refresh_banner_behavior">com.aoy.learn.behavior.ClassicRefreshTopBannerBehavior</string>
 </resources>

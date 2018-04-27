@@ -89,14 +89,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 1000);
     }
-
-    public void toMyBehavior() {
-        Intent intent = new Intent(this, MyBehaviorActivity.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.app_bar_layout)
-    public void onViewClicked() {
-        toMyBehavior();
-    }
 }

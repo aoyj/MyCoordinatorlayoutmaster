@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.aoy.learn.MyBehaviorActivity;
 import com.aoy.learn.R;
 
 import java.util.ArrayList;
@@ -63,10 +62,6 @@ public class ItemAdapter extends RecyclerView.Adapter {
                  //   toMyBehavior(v);
                 }
             });
-        }
-        public void toMyBehavior(View view) {
-            Intent intent = new Intent(view.getContext(), MyBehaviorActivity.class);
-            view.getContext().startActivity(intent);
         }
     }
 
