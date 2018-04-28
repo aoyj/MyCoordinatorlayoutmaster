@@ -11,12 +11,13 @@
         android:layout_height="wrap_content"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/bottom_viewpager"
+        android:background="#ffffff"
         app:layout_behavior="@string/classic_refresh_bottom_behavior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <com.aoy.learn.widget.BannerLinearLayout
         android:id="@+id/top_view"
         android:layout_width="match_parent"
-        app:layout_behavior="@string/app_banner_header_behavior"
+        app:layout_behavior="@string/classic_refresh_banner_behavior"
         android:layout_height="wrap_content"/>
 </android.support.design.widget.CoordinatorLayout>

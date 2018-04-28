@@ -2,12 +2,14 @@ package com.aoy.learn.widget;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
+import android.support.v4.math.MathUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.aoy.learn.R;
+import com.aoy.learn.refresh.ClassicRefreshUIHandler;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
@@ -17,7 +19,7 @@ import butterknife.ButterKnife;
  * Created by drizzt on 2018/4/27.
  */
 
-public class ClassicRefreshHeaderView extends RelativeLayout {
+public class ClassicRefreshHeaderView extends RelativeLayout implements ClassicRefreshUIHandler {
     @BindView(R.id.dh_circle_bar)
     CircleProgressBar dhCircleBar;
     @BindView(R.id.dh_animation_img)
@@ -25,6 +27,8 @@ public class ClassicRefreshHeaderView extends RelativeLayout {
 
     private AnimationDrawable refreshAnimation;
     Context mContext;
+
+    boolean isRefresh = false;
 
 
     public ClassicRefreshHeaderView(Context context) {
@@ -52,8 +56,24 @@ public class ClassicRefreshHeaderView extends RelativeLayout {
     }
 
     private void resetView() {
+        isRefresh = false;
         dhCircleBar.setVisibility(View.VISIBLE);
         refreshAnimation.stop();
         refreshAnimation.selectDrawable(0);
+    }
+
+    public void onPrograssChange(int progress){
+        progress = MathUtils.clamp(progress,0,100);
+        dhCircleBar.setProgress(progress);
+    }
+
+    public void onStartRefresh(){
+        isRefresh = true;
+        dhCircleBar.setVisibility(GONE);
+        refreshAnimation.start();
+    }
+
+    public void onComplete(){
+        resetView();
     }
 }

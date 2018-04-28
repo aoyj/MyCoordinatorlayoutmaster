@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.aoy.learn.ClassicRefreshActivity;
 import com.aoy.learn.R;
 
 import java.util.ArrayList;
@@ -59,10 +60,16 @@ public class ItemAdapter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                 //   toMyBehavior(v);
+                    toMyBehavior(v);
                 }
             });
         }
+
+        private void toMyBehavior(View v) {
+            Intent intent = new Intent(v.getContext(),ClassicRefreshActivity.class);
+            v.getContext().startActivity(intent);
+        }
     }
+
 
 }

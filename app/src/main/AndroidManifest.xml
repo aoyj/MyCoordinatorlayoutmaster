@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-       <!-- <activity android:name=".MyBehaviorActivity">
-        </activity>-->
+        <activity android:name=".ClassicRefreshActivity">
+        </activity>
     </application>
 
 </manifest>

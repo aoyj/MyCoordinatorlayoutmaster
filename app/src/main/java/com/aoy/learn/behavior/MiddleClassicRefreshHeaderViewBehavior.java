@@ -1,8 +1,12 @@
 package com.aoy.learn.behavior;
 
+import android.content.Context;
 import android.graphics.Rect;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
 import android.view.View;
 
 import com.aoy.learn.widget.BannerLinearLayout;
@@ -16,10 +20,27 @@ import java.util.List;
 
 public class MiddleClassicRefreshHeaderViewBehavior extends ClassicRefreshHeaderViewBehavior<ClassicRefreshHeaderView> {
 
+    public MiddleClassicRefreshHeaderViewBehavior() {}
+
+    public MiddleClassicRefreshHeaderViewBehavior(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, ClassicRefreshHeaderView child, View dependency) {
-        return dependency instanceof BannerLinearLayout;
+        return dependency instanceof ViewPager;
     }
+
+    @Override
+    public boolean onDependentViewChanged(CoordinatorLayout parent, ClassicRefreshHeaderView child, View dependency) {
+        offsetChildAsNeeded(parent, child, dependency);
+        return false;
+    }
+
+    private void offsetChildAsNeeded(CoordinatorLayout parent, View child, View dependency) {
+        ViewCompat.offsetTopAndBottom(child, (dependency.getTop() - child.getBottom()));
+    }
+
 
     @Override
     public void layoutChild(CoordinatorLayout parent, ClassicRefreshHeaderView child, int layoutDirection) {
@@ -30,9 +51,9 @@ public class MiddleClassicRefreshHeaderViewBehavior extends ClassicRefreshHeader
                     (CoordinatorLayout.LayoutParams) child.getLayoutParams();
             final Rect available = mTempRect1;
             available.set(parent.getPaddingLeft() + lp.leftMargin,
-                    header.getBottom() + lp.topMargin,
+                    header.getTop() - lp.bottomMargin -  child.getMeasuredHeight(),
                     parent.getWidth() - parent.getPaddingRight() - lp.rightMargin,
-                    header.getBottom() + lp.topMargin + lp.bottomMargin + child.getMeasuredHeight());
+                    header.getTop() - lp.bottomMargin);
             final Rect out = mTempRect2;
             GravityCompat.apply(resolveGravity(lp.gravity), child.getMeasuredWidth(),
                     child.getMeasuredHeight(), available, out, layoutDirection);
@@ -45,8 +66,8 @@ public class MiddleClassicRefreshHeaderViewBehavior extends ClassicRefreshHeader
     @Override
     View findFirstDependency(List<View> views) {
         for(View v : views){
-            if(v instanceof BannerLinearLayout){
-                return (BannerLinearLayout) v;
+            if(v instanceof ViewPager){
+                return  v;
             }
         }
         return null;

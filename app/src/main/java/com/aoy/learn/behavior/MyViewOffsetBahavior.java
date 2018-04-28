@@ -11,7 +11,7 @@ import android.view.View;
 
 public class MyViewOffsetBahavior<V extends View> extends CoordinatorLayout.Behavior<V>{
 
-    private MyViewoffsetHelper mViewOffsetHelper;
+    protected MyViewoffsetHelper mViewOffsetHelper;
 
     private int mTempTopBottomOffset = 0;
     private int mTempLeftRightOffset = 0;
